@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Home Control</string>
+    <string name="title_activity_main">Home Control</string>
+    <string name="package_name">homecontrol.anupamkris.dev</string>
+    <string name="custom_url_scheme">homecontrol.anupamkris.dev</string>
+</resources>

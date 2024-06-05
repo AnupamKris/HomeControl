@@ -1,0 +1,7 @@
+{
+  "appId": "homecontrol.anupamkris.dev",
+  "appName": "Home Control",
+  "webDir": "dist",
+  "clearText": "true",
+  "allowMixedContent": "true"
+}
