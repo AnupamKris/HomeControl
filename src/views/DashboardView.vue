@@ -17,7 +17,7 @@ import axios from "axios";
 const serverIp = useLocalStorage("serverIp");
 
 const toggleRelay = async (checked) => {
-  await axios.get(serverStore.server + "/toggle");
+  await axios.get(serverIp.value + "/toggle");
 };
 
 const clearServer = () => {
