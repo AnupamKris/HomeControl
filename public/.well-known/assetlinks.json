@@ -1,0 +1,14 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "homecontrol.anupamkris.dev",
+            "sha256_cert_fingerprints": [
+                "36:2C:78:B0:57:FD:77:EC:1B:B0:D7:20:3C:4F:D6:AC:A1:7D:86:5C:27:2B:92:2E:E0:3E:60:C3:6B:6A:00:BB"
+            ]
+        }
+    }
+]
