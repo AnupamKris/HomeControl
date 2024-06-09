@@ -10,14 +10,19 @@
     "android": "yarn build && yarn cap copy && yarn cap sync && yarn cap open android"
   },
   "dependencies": {
+    "@capacitor-community/barcode-scanner": "^4.0.1",
+    "@capacitor-mlkit/barcode-scanning": "^6.1.0",
     "@capacitor/android": "^6.0.0",
     "@capacitor/app": "^6.0.0",
     "@capacitor/core": "^6.0.0",
+    "@capacitor/haptics": "^6.0.0",
+    "@capacitor/status-bar": "^6.0.0",
     "@radix-icons/vue": "^1.0.0",
     "@vueuse/core": "^10.10.0",
     "axios": "^1.7.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "lucide-vue-next": "^0.383.0",
     "pinia": "^2.1.7",
     "radix-vue": "^1.8.3",
     "sass": "^1.71.0",
@@ -26,6 +31,7 @@
     "tailwindcss-animate": "^1.0.7",
     "unplugin-auto-import": "^0.17.5",
     "unplugin-vue-components": "^0.26.0",
+    "vaul-vue": "^0.1.2",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5"
   },

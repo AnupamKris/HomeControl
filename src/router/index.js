@@ -1,12 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { App, URLOpenListenerEvent } from "@capacitor/app";
+import { App } from "@capacitor/app";
 
 import HomeView from "../views/HomeView.vue";
-import DashboardView from "../views/DashboardView.vue";
-import Toggle from "../components/Toggle.vue";
-
-import { useServerStore } from "@/stores/server";
-import { useLocalStorage } from "@vueuse/core";
+import Settings from "../views/Settings.vue";
+import Favorites from "../views/Favorites.vue";
+import Devices from "../views/Devices.vue";
+import DeviceControl from "../views/DeviceControl.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,37 +16,26 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: "/dashboard",
-      name: "dashboard",
-      component: DashboardView,
-      meta: {
-        requiresIp: true,
-      },
+      path: "/settings",
+      name: "settings",
+      component: Settings,
     },
     {
-      path: "/toggle",
-      name: "toggle",
-      component: Toggle,
-      meta: {
-        requiresIp: true,
-      },
+      path: "/favorites",
+      name: "favorites",
+      component: Favorites,
+    },
+    {
+      path: "/devices",
+      name: "devices",
+      component: Devices,
+    },
+    {
+      path: "/device/:device",
+      name: "device",
+      component: DeviceControl,
     },
   ],
-});
-
-router.beforeEach(async (to) => {
-  if (to.meta.requiresIp) {
-    // check local storage for server ip
-    const serverIp = useLocalStorage("serverIp");
-    if (!serverIp.value) {
-      return {
-        path: "/",
-        query: {
-          redirect: to.fullPath,
-        },
-      };
-    }
-  }
 });
 
 App.addListener("appUrlOpen", function (event) {

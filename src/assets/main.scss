@@ -10,3 +10,14 @@
 #app {
   height: 100vh;
 }
+
+body.barcode-scanner-active {
+  visibility: hidden;
+  --background: transparent;
+}
+
+// Show only the barcode scanner modal
+.barcode-scanner-modal {
+  visibility: visible;
+  height: 50%;
+}
