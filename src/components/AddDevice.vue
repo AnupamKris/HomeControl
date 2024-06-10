@@ -15,12 +15,6 @@ import { Button } from "@/components/ui/button";
 import { useLocalStorage } from "@vueuse/core";
 import { QrCode, X } from "lucide-vue-next";
 
-import {
-  BarcodeScanner,
-  BarcodeFormat,
-  LensFacing,
-} from "@capacitor-mlkit/barcode-scanning";
-
 const settings = useLocalStorage("settings", {
   darkMode: false,
 });
@@ -47,41 +41,10 @@ const saveControl = (data) => {
 
 const emit = defineEmits(["save"]);
 
-const scanning = ref(false);
-
-const scanSingleBarcode = async () => {
-  return new Promise(async (resolve) => {
-    document.querySelector("body")?.classList.add("barcode-scanner-active");
-
-    const listener = await BarcodeScanner.addListener(
-      "barcodeScanned",
-      async (result) => {
-        await listener.remove();
-        document
-          .querySelector("body")
-          ?.classList.remove("barcode-scanner-active");
-        await BarcodeScanner.stopScan();
-        resolve(result.barcode);
-      }
-    );
-
-    await BarcodeScanner.startScan();
-  });
-};
-
-const scan = async () => {
-  scanning.value = true;
-  let qr = await scanSingleBarcode();
-  // let data = JSON.parse(qr);
-  console.log(qr.rawValue);
-  scanning.value = false;
-};
-
-const stopScan = async () => {
-  await BarcodeScanner.stopScan();
-  scanning.value = false;
-  document.querySelector("body")?.classList.remove("barcode-scanner-active");
-};
+const props = defineProps({
+  scan: "function",
+  stopScan: "function",
+});
 
 const save = () => {
   if (!serverIp.value || !controls.value || !deviceName.value) {
@@ -100,11 +63,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="barcode-overlay" v-if="scanning">
-    <div class="icon">
-      <X @click="stopScan" />
-    </div>
-  </div>
   <Drawer>
     <DrawerTrigger as-child>
       <slot />
@@ -184,41 +142,6 @@ button {
     height: 50px;
     font-size: 1rem;
     width: 100%;
-  }
-}
-
-.barcode-overlay {
-  position: fixed;
-
-  top: -100px;
-  left: 0px;
-
-  width: 100vw;
-  height: 100vh;
-  z-index: 1000;
-  visibility: visible;
-
-  background: rgba(0, 0, 0, 0.5);
-
-  .icon {
-    bottom: 50px;
-    height: 50px;
-    width: 50px;
-
-    background: #ff4f4f;
-
-    left: 50%;
-    transform: translateX(-50%);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 50%;
-
-    svg {
-      stroke: #fff;
-    }
   }
 }
 

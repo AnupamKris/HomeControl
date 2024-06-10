@@ -3,5 +3,9 @@
   "appName": "Home Control",
   "webDir": "dist",
   "clearText": "true",
-  "allowMixedContent": "true"
+  "allowMixedContent": "true",
+  "server": {
+    "cleartext": true,
+    "url": "http://192.168.29.208:5173"
+  }
 }
